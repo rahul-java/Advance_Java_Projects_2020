@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Login</title>
+<script type="text/javascript">
+
+    function getData()
+    {
+    	var ifsc=document.getElementById("ifsc").value;
+    	
+    	var h;
+    	
+        if (window.XMLHttpRequest)
+    	{
+    	     // code for IE7+, Firefox, Chrome, Opera, Safari
+    	     h=new XMLHttpRequest();
+    	}
+    	else
+    	{    // code for IE6, IE5
+    	     h=new ActiveXObject("Microsoft.XMLHTTP");
+    	 }
+        
+        
+        
+        
+        h.onreadystatechange=function()
+        {
+          if (h.readyState==4 && h.status==200)
+           {
+        	
+              //document.getElementById("fname").value
+     
+              document.getElementById("t1").value=h.responseText;
+    
+             }
+         
+         }
+        
+        h.open("GET","FirstServlet?ifsc="+ifsc,true);
+        h.send();
+    	
+    }
+
+
+</script>
+
+
+
+
+</head>
+<body>
+<form  method="get">
+
+<table border="3" bgcolor="yellow" align="center">
+<tr> <td>IFSC</td> <td> <input type="text" name="ifsc" id="ifsc" onblur="getData();">    </td>  </tr>
+
+<tr>
+<td colspan="2">  <input type="text" id="t1" size="20" readonly="readonly"> </td>
+</tr>
+
+
+</table>
+
+
+
+
+</form>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+module WebServicesProject_Client {
+}

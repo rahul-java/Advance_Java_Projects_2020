@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="title" style="background-color:skyblue" align="center"> <h2> Update Details</h2></div>
+
+<form action="">
+<table border="3" bgcolor="skyblue" align="center">
+<tr><th>
+Email Id :
+</th> <td> <input type="text" name="email" onchange="operationUpdate(this.value)"></td></tr>
+<!--   <tr><td> <input type="submit" value="Submit"> </td> </tr>  -->
+</table>
+</form>
+
+<script type="text/javascript">
+
+function operationUpdate(email)
+{
+	 var req;    
+	  if (email == "")
+	  {
+	    document.getElementById("viewArea").innerHTML = "";
+	    return;
+	  }
+	  if (window.XMLHttpRequest)
+  	{
+  	     // code for IE7+, Firefox, Chrome, Opera, Safari
+  	     req=new XMLHttpRequest();
+  	}
+  	else
+  	{    // code for IE6, IE5
+  	     req=new ActiveXObject("Microsoft.XMLHTTP");
+  	 }
+	  
+	  req.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	      document.getElementById("viewArea").innerHTML = this.responseText;
+	    }
+	  };
+	  req.open("GET", "UpdateServlet?email="+email, true);
+	  req.send();
+	}
+
+
+
+
+</script>
+
+<br>
+<br>
+<div id="viewArea"> </div>
+</body>
+</html>

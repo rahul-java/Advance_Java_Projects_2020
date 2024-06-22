@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FactorialServicesService WSDL service -->
+
+  <service name="FactorialServices" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://max"/>
+      <parameter name="wsdlServiceElement" value="FactorialServicesService"/>
+      <parameter name="schemaQualified" value="http://max"/>
+      <parameter name="wsdlServicePort" value="FactorialServices"/>
+      <parameter name="className" value="max.FactorialServices"/>
+      <parameter name="wsdlPortType" value="FactorialServices"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:retNS="http://max" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="otp" qname="otp" returnQName="retNS:otpReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://max" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mob" type="tns:string"/>
+      </operation>
+      <operation xmlns:retNS="http://max" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getFacto" qname="getFacto" returnQName="retNS:getFactoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://max" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:n" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getFacto otp"/>
+
+  </service>
+</deployment>
